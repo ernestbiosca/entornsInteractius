@@ -1,4 +1,14 @@
 String configFile = "data/quadsconfig.txt";
+import ddf.minim.analysis.*;
+import ddf.minim.*;
+
+//piano
+import themidibus.*; //Import the library
+MidiBus myBus; // The MidiBus
+Minim minim;  
+AudioPlayer jingle;
+FFT fftLin;
+FFT fftLog;
 
 ProjectedQuads projectedQuads;
 PGraphics q1;
@@ -104,4 +114,53 @@ void mousePressed() {
 void mouseDragged() {
   //let projectedQuads handle mouseDragged by itself
   projectedQuads.mouseDragged();
+}
+
+
+//piano controlls
+
+
+
+
+void noteOn(int channel, int pitch, int velocity) {
+  // Receive a noteOn
+  println();
+  println("Note On:");
+  println("--------");
+  println("Channel:"+channel);
+  println("Pitch:"+pitch);
+  println("Velocity:"+velocity);
+}
+
+void noteOff(int channel, int pitch, int velocity) {
+  // Receive a noteOff
+  /*
+  println();
+  println("Note Off:");
+  println("--------");
+  println("Channel:"+channel);
+  println("Pitch:"+pitch);
+  println("Velocity:"+velocity);
+  */
+}
+
+void controllerChange(int channel, int number, int value) {
+  // Receive a controllerChange
+  println();
+  println("Controller Change:");
+  println("--------");
+  println("Channel:"+channel);
+  println("Number:"+number);
+  println("Value:"+value);
+  
+  
+  if (number == 48){
+    amplada2 = map(value, 0, 127, 10, 200);
+    //println(amplada);
+  }
+  
+   if (number == 49){
+    numPals = map(value, 0, 127, 1, 10);
+  }
+  
 }
