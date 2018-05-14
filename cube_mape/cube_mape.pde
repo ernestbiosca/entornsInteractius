@@ -7,8 +7,6 @@ import themidibus.*; //Import the library
 MidiBus myBus; // The MidiBus
 Minim minim;  
 AudioPlayer jingle;
-FFT fftLin;
-FFT fftLog;
 
 ProjectedQuads projectedQuads;
 PGraphics q1;
@@ -16,7 +14,7 @@ PGraphics q2;
 PGraphics q3;
 PGraphics q4;
 PGraphics q5;
-PGraphics q6;
+PGraphics q0;
 
 int escena = 1;
 //q1
@@ -33,21 +31,24 @@ void setup(){
   projectedQuads = new ProjectedQuads();  
   projectedQuads.load(configFile);
   
+    MidiBus.list();
+  myBus = new MidiBus(this, 0, -1);
+  
   if (projectedQuads.getNumQuads() < 6) {
     projectedQuads.setNumQuads(6);  
   }  
-  q1 = createGraphics(256, 256, P2D);
-  projectedQuads.getQuad(0).setTexture(q1);
+  q0 = createGraphics(256, 256, P2D);
+  projectedQuads.getQuad(0).setTexture(q0);
+  q1 = createGraphics(1000, 1000, P2D);
+  projectedQuads.getQuad(1).setTexture(q1);
   q2 = createGraphics(1000, 1000, P2D);
-  projectedQuads.getQuad(1).setTexture(q2);
+  projectedQuads.getQuad(2).setTexture(q2);
   q3 = createGraphics(1000, 1000, P2D);
-  projectedQuads.getQuad(2).setTexture(q3);
+  projectedQuads.getQuad(3).setTexture(q3);
   q4 = createGraphics(1000, 1000, P2D);
-  projectedQuads.getQuad(3).setTexture(q4);
+  projectedQuads.getQuad(4).setTexture(q4);
   q5 = createGraphics(1000, 1000, P2D);
-  projectedQuads.getQuad(4).setTexture(q5);
-  q6 = createGraphics(1000, 1000, P2D);
-  projectedQuads.getQuad(5).setTexture(q6);
+  projectedQuads.getQuad(5).setTexture(q5);
 }
 
 void draw(){
@@ -63,11 +64,6 @@ void draw(){
 
 }
 
-void midiChange(){
-  if(escena == 1){
-  }
-    
-}
 
 void keyPressed() {
   //let projectedQuads handle keys by itself
@@ -130,6 +126,32 @@ void noteOn(int channel, int pitch, int velocity) {
   println("Channel:"+channel);
   println("Pitch:"+pitch);
   println("Velocity:"+velocity);
+  
+  if(pitch == 36 ){
+    //escena1
+     projectedQuads.getQuad(0).setTexture(q2);
+    projectedQuads.getQuad(1).setTexture(q2);
+    projectedQuads.getQuad(2).setTexture(q2);
+    projectedQuads.getQuad(3).setTexture(q1);
+    projectedQuads.getQuad(4).setTexture(q1);
+    projectedQuads.getQuad(5).setTexture(q1);
+    
+  
+  }
+  
+    if(pitch == 37 ){
+    //escena2
+     projectedQuads.getQuad(0).setTexture(q2);
+    projectedQuads.getQuad(1).setTexture(q2);
+    projectedQuads.getQuad(2).setTexture(q2);
+    projectedQuads.getQuad(3).setTexture(q1);
+    projectedQuads.getQuad(4).setTexture(q1);
+    projectedQuads.getQuad(5).setTexture(q1);
+    
+  
+  }
+  
+  
 }
 
 void noteOff(int channel, int pitch, int velocity) {
@@ -155,7 +177,7 @@ void controllerChange(int channel, int number, int value) {
   
   
   if (number == 48){
-    amplada2 = map(value, 0, 127, 10, 200);
+    //amplada2 = map(value, 0, 127, 10, 200);
     //println(amplada);
   }
   

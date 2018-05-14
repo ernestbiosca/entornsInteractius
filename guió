@@ -7,4 +7,20 @@ Tots són iguals
 _escena2{
 0 i 1 són iguals 
 4 i 5 són iguals
+2 i 3 iguals
 }
+
+_escena3{
+0 es mirall de 1 
+4 es mirall de 5
+}
+
+_escena4{
+0 i 1 i 4 i 5 són iguals 
+3 i 2 són iguals
+}
+
+escena5{
+tots diferents
+}
+
